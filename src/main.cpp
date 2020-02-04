@@ -1,5 +1,6 @@
 
 #include <windows.h>
+#include <sstream>
 
 LRESULT CALLBACK WindProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
     switch (msg) {
@@ -9,6 +10,12 @@ LRESULT CALLBACK WindProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             break;
         case WM_KEYUP:
             if (wParam == 'F') SetWindowText(hwnd, "DangerField");
+            break;
+        case WM_LBUTTONDOWN:
+            POINTS pt = MAKEPOINTS(lParam);
+            std::ostringstream oss;
+            oss << "(" << pt.x << ", " << pt.y << ")";
+            SetWindowText(hwnd, oss.str().c_str());
             break;
     }
     return DefWindowProc(hwnd, msg, wParam, lParam);
@@ -51,7 +58,7 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
     MSG msg;
     BOOL gResult;
     while ((gResult = GetMessage(&msg, nullptr, 0, 0)) > 0) {
-        TranslateMessage(&msg);
+        // TranslateMessage(&msg); // sends WM_CHAR messages for text input
         DispatchMessage(&msg);
     }
     if (gResult == -1) return -1;
