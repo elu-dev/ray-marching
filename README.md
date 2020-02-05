@@ -1,4 +1,6 @@
 # Ray Marcher
 
-## Requirements
-- Get Freeglut (MinGW) from [here](https://www.transmissionzero.co.uk/software/freeglut-devel/) and follow the readme.txt (also put the dll for x64 inside the out/ folder)
+## Instructions (Windows)
+- Get Freeglut from [here](https://www.transmissionzero.co.uk/software/freeglut-devel/) (MinGW) and follow the readme.txt
+- Change the directories inside ``./build.bat`` to match the location of the freeglut folders
+- Move the x64 dll inside the ``./out/`` folder
