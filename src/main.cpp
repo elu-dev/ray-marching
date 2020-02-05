@@ -1,67 +1,23 @@
+/*
+ * This is a very basic Windows C application for testing GLUT (and compatible
+ * implementations such as freeglut). It displays a red square, and exits when
+ * the escape key is pressed.
+ */
 
-#include <windows.h>
-#include <sstream>
+#include <stdlib.h>
+#include <GL/glut.h>
+#include "render.c"
 
-LRESULT CALLBACK WindProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
-    switch (msg) {
-        case WM_CLOSE: PostQuitMessage(69); break;
-        case WM_KEYDOWN:
-            if (wParam == 'F') SetWindowText(hwnd, "Respects");
-            break;
-        case WM_KEYUP:
-            if (wParam == 'F') SetWindowText(hwnd, "DangerField");
-            break;
-        case WM_LBUTTONDOWN:
-            POINTS pt = MAKEPOINTS(lParam);
-            std::ostringstream oss;
-            oss << "(" << pt.x << ", " << pt.y << ")";
-            SetWindowText(hwnd, oss.str().c_str());
-            break;
-    }
-    return DefWindowProc(hwnd, msg, wParam, lParam);
+int main(int argc, char** argv) {
+
+  glutInit(&argc, argv);
+
+  glutCreateWindow("\\o/");
+  glutReshapeWindow(600, 600);
+  // glutKeyboardFunc(&keyboard);
+  glutDisplayFunc(&display);
+
+  glutMainLoop();
+
+  return EXIT_SUCCESS;
 }
-
-int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-    
-    const auto pClassName = "hw3dbutts";
-
-    // register window class
-    WNDCLASSEX wc = {0};
-    wc.cbSize = sizeof(wc);
-    wc.style = CS_OWNDC;
-    wc.lpfnWndProc = WindProc;
-    wc.cbClsExtra = 0;
-    wc.cbWndExtra = 0;
-    wc.hInstance = hInstance;
-    wc.hIcon = nullptr;
-    wc.hCursor = nullptr;
-    wc.hbrBackground = nullptr;
-    wc.lpszMenuName = nullptr;
-    wc.lpszClassName = pClassName;
-    wc.hIconSm = nullptr;
-    RegisterClassEx(&wc);
-
-    // instance window
-    HWND hwnd = CreateWindowEx(
-        0, pClassName,
-        "\\o/",
-        WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU,
-        200, 200, 640, 480,
-        nullptr, nullptr, hInstance, nullptr
-    );
-    
-    // show the damn window
-    ShowWindow(hwnd, SW_SHOW);
-
-
-    // message pump
-    MSG msg;
-    BOOL gResult;
-    while ((gResult = GetMessage(&msg, nullptr, 0, 0)) > 0) {
-        // TranslateMessage(&msg); // sends WM_CHAR messages for text input
-        DispatchMessage(&msg);
-    }
-    if (gResult == -1) return -1;
-    else return msg.wParam;
-}
-

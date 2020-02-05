@@ -1,5 +1,10 @@
 {
+    "python.pythonPath": "C:\\Users\\EDD\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
     "files.associations": {
-        "sstream": "cpp"
+        "callbacks.h": "c",
+        "stdlib.h": "c",
+        "glut.h": "c",
+        "glu.h": "c",
+        "render.c": "cpp"
     }
 }
