@@ -1,12 +1,6 @@
-/*
- * This is a very basic Windows C application for testing GLUT (and compatible
- * implementations such as freeglut). It displays a red square, and exits when
- * the escape key is pressed.
- */
-
 #include <stdlib.h>
 #include <GL/glut.h>
-#include "render.c"
+#include "render.cpp"
 
 int main(int argc, char** argv) {
 
