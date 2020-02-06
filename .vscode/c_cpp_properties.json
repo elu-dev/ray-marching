@@ -4,7 +4,8 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:\\Program Files\\Common Files\\MinGW\\freeglut\\include"
+                "C:\\Program Files\\Common Files\\MinGW\\freeglut\\include",
+                "C:\\Program Files\\Common Files\\MinGW\\glew\\include"
             ],
             "defines": [
                 "_DEBUG",
