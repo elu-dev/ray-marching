@@ -1,8 +1,12 @@
 # Ray Marcher
 
 ## Instructions (Windows)
-- Get Freeglut from [here](https://www.transmissionzero.co.uk/software/freeglut-devel/) (MinGW) and follow the readme.txt
-- Change the directories inside ``./build.bat`` to match the location of the freeglut folders
-- Move the x64 dll inside the ``./out/`` folder
+- Get glfw from [here](https://www.glfw.org/download.html)
+- Extract the contents of ``glfw.zip\include`` into the ``.\include`` folder
+- Extract the .a files from ``glfw.zip\lib-mingw-w64`` into the ``.\lib`` folder
+- Move the .dll file from ``glfw.zip\lib-mingw-w64`` into the ``.\out`` folder
 
-- Get Glew from [here](http://glew.sourceforge.net/basic.html) and do the same thing
+- Get glew from [here](http://glew.sourceforge.net/basic.html)
+- Extract the contents of ``glew.zip\include`` into the ``.\include`` folder
+- Extract the contents of ``glew.zip\lib`` into the ``.\lib`` folder
+- Move ``glew.zip\bin\Release\x64\glew32.dll`` into the ``.\out`` folder
