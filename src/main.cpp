@@ -6,6 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <assert.h>
 
 /* IDK */
 
@@ -122,6 +123,7 @@ int main(void) {
     }
 
     glfwMakeContextCurrent(window);
+    glfwSwapInterval(1);
     
     if (glewInit() != GLEW_OK) std::cout << "Glew error!\n";
 
@@ -156,12 +158,22 @@ int main(void) {
     unsigned int shader = CreateShader(source.VertexSource, source.FragmentSource);
     glUseProgram(shader);
 
+    int location = glGetUniformLocation(shader, "u_Color");
+    assert(location != -1);
+    
     /* = IDK = */
+
+    float r = 0.0f, increment = 0.05;
 
     while (!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT);
 
+        glUniform4f(location, r, 0.3f, 0.8f, 1.0f);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+
+        if (r > 1.0f) increment = -0.05;
+        else if (r <= 0.0f) increment = 0.05;
+        r += increment;
 
         glfwSwapBuffers(window);
 
